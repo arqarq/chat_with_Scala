@@ -1,3 +1,5 @@
+package learn
+
 class Point(val xc: Int, val yc: Int) {
   var x: Int = xc
   var y: Int = yc
@@ -5,8 +7,8 @@ class Point(val xc: Int, val yc: Int) {
   def move(dx: Int, dy: Int) {
     x = x + dx
     y = y + dy
-    println("Point x location: " + x)
-    println("Point y location: " + y)
+    println("learn.Point x location: " + x)
+    println("learn.Point y location: " + y)
   }
 }
 
@@ -17,9 +19,9 @@ class Location(override val xc: Int, override val yc: Int, val zc: Int) extends 
     x = x + dx
     y = y + dy
     z = z + dz
-    println("Point x location: " + x)
-    println("Point y location: " + y)
-    println("Point z location: " + z)
+    println("learn.Point x location: " + x)
+    println("learn.Point y location: " + y)
+    println("learn.Point z location: " + z)
   }
 }
 

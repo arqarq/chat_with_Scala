@@ -1,3 +1,5 @@
+package learn
+
 object Run {
 
   implicit class IntTimes(x: Int) {
@@ -9,6 +11,9 @@ object Run {
 
       loop(x)
       println()
+      println(-2 >> 1)
+      println(-2 >>> 1)
+      println(Integer.MAX_VALUE)
     }
 
   }

@@ -1,4 +1,6 @@
-import Run._
+package learn
+
+import learn.Run._
 
 object Demo2 {
   def main(args: Array[String]) {
