@@ -16,7 +16,7 @@ object Demo15 {
     logWithDateBound("message3")
   }
 
-  def log(date: Date, message: String) = {
+  def log(date: Date, message: String): Unit = {
     println(date + "----" + message)
   }
 }
