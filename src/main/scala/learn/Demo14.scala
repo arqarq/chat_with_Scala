@@ -11,5 +11,6 @@ object Demo14 {
     //    println(userDir.apply)
     println(userDir.apply(1))
     println(System.getProperty("java.home"))
+    println(System.getProperty("scala.home"))
   }
 }
