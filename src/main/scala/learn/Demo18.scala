@@ -1,6 +1,7 @@
 package learn
 
 object Demo18 extends App {
+  val fruit = "apples" :: ("oranges" :: ("pears" :: Nil))
   var tup: (Int, String, String, Console.type) = (1, "String", """literal""", Console)
   var tup4 = new Tuple4[Int, String, String, Console.type](1, "cos", "cos2", Console)
   var tup3 = new Tuple4[Int, String, String, List[List[Int]]](1, "cos", "cos2",
@@ -20,4 +21,7 @@ object Demo18 extends App {
   println(tup2._1 + tup2._2)
   println(tup5._4.+(" qqq").+(3))
   println(tup5._4 + " qqq" + 3)
+  println(fruit.head)
+  println(fruit.tail)
+  println(fruit.isEmpty)
 }
