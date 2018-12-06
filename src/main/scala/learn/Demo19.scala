@@ -15,6 +15,7 @@ object Demo19 {
     println(additional.squares)
     println(additional.mul)
     println(additional.mul2)
+    println(additional.mul3)
   }
 
   class Additional {
@@ -23,9 +24,12 @@ object Demo19 {
 
     val squares: List[Int] = List.tabulate[Int](6)(n => n * n)
     val mul: List[List[Int]] = List.tabulate[Int](5, 6)(_ * _)
-    val mul2: List[List[Int]] = List.tabulate(5, 6)(f)
+    val mul2: List[List[Int]] = List.tabulate(5, 6)(f /*: (Int, Int) => Int*/)
+    val mul3: List[List[String]] = List.tabulate(3, 3)(f2)
 
     private def f(n1: Int, n2: Int): Int = n1 * n2
+
+    private def f2(n1: Int, n2: Int) = n1 * n2 + ".0"
   }
 
 }
