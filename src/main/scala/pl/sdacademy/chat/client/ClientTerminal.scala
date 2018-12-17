@@ -4,27 +4,43 @@ import java.io.{IOException, ObjectOutputStream}
 import java.net.Socket
 import java.util.Scanner
 
-class ClientTerminal {
-  private var streamToServer: ObjectOutputStream = _
-  private var scanner: Scanner = _
-  private var connectionToServer: Socket = _
+import pl.sdacademy.chat.model.ChatMessage
 
-  try {
-    connectionToServer = new Socket("192.168.0.11", 5567)
-  } catch {
-    case ex: IOException => {
-      println(ex.getMessage)
-    }
-  }
+class ClientTerminal(private final val connectionToServer: Socket
+                     = new Socket("192.168.0.11", 5567)
+                    ) extends Thread {
+  override def run() {
+    var streamToServer: ObjectOutputStream = null
 
-  def run() {
     try {
       streamToServer = new ObjectOutputStream(connectionToServer.getOutputStream)
-      scanner = new Scanner(System.in)
+      val scanner = new Scanner(System.in)
+      var message: String = null
+
+      print("Your username: ")
+      val username: String = scanner.nextLine
+      do {
+        print("> ")
+        message = scanner.nextLine
+        val messageToSend = new ChatMessage(username, message)
+        streamToServer.writeObject(messageToSend)
+        streamToServer.flush()
+      } while (!message.equalsIgnoreCase("exit"))
     } catch {
-      case ex: IOException => {}
+      case ex: IOException =>
+        println("Server closed connection.")
+        ex.printStackTrace()
     } finally {
-      streamToServer.close()
+      if (streamToServer != null) {
+        try {
+          streamToServer.close()
+        } catch {
+          case ex: IOException =>
+            println("Cannot close output stream.")
+            ex.printStackTrace()
+        }
+      }
     }
+    println("Disconnecting")
   }
 }
