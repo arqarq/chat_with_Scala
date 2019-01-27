@@ -21,7 +21,7 @@ object ClientTerminalMain {
       } catch {
         case ex: IOException =>
           println("Could not connect to server: " + ex.getMessage)
-          reconnectionAttemps = reconnectionAttemps - 1
+          reconnectionAttemps -= 1
           if (reconnectionAttemps > 0) {
             countdown(timeBetweenReconnectAttempt)
           }
@@ -37,7 +37,7 @@ object ClientTerminalMain {
     while (i > 0) {
       println("### Waiting " + i + " till reconnect attempt...")
       Thread.sleep(1000)
-      i = i - 1
+      i -= 1
     }
   }
 }
