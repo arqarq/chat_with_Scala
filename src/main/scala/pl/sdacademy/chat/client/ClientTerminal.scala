@@ -6,9 +6,9 @@ import java.util.Scanner
 
 import pl.sdacademy.chat.model.ChatMessage
 
-class ClientTerminal(private final val connectionToServer: Socket
-                     = new Socket("192.168.0.11", 5567)
-                    ) extends Thread {
+class ClientTerminal(private val connectionToServer: Socket
+                     = new Socket("192.168.0.11", 5567))
+  extends Thread {
   override def run() {
     var streamToServer: ObjectOutputStream = null
 
@@ -32,13 +32,7 @@ class ClientTerminal(private final val connectionToServer: Socket
         ex.printStackTrace()
     } finally {
       if (streamToServer != null) {
-        try {
-          streamToServer.close()
-        } catch {
-          case ex: IOException =>
-            println("Cannot close output stream.")
-            ex.printStackTrace()
-        }
+        streamToServer.close()
       }
     }
     println("Disconnecting")
