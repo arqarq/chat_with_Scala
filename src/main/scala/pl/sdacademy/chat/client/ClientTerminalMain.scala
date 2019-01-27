@@ -32,7 +32,7 @@ object ClientTerminalMain {
 
   @throws(classOf[InterruptedException])
   private def countdown(a: Int): Unit = {
-    var i: Int = a
+    var i = a
 
     while (i > 0) {
       println("### Waiting " + i + " till reconnect attempt...")
