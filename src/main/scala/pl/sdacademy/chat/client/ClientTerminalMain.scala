@@ -23,11 +23,19 @@ object ClientTerminalMain {
           println("Could not connect to server: " + ex.getMessage)
           reconnectionAttemps -= 1
           if (reconnectionAttemps > 0) {
-            countdown(timeBetweenReconnectAttempt)
+            countdown2(timeBetweenReconnectAttempt)
           }
       }
     }
     println("See you soon!")
+  }
+
+  @throws(classOf[InterruptedException])
+  private def countdown2(a: Int): Unit = {
+    for (i <- a to 1 by -1) {
+      println("### Waiting " + i + " till reconnect attempt...")
+      Thread.sleep(1000)
+    }
   }
 
   @throws(classOf[InterruptedException])
