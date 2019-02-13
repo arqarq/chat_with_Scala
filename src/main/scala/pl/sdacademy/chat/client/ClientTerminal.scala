@@ -6,9 +6,10 @@ import java.util.Scanner
 
 import pl.sdacademy.chat.model.ChatMessage
 
-class ClientTerminal(private val connectionToServer: Socket
-                     = new Socket("192.168.0.11", 5567))
-  extends Thread {
+@throws(classOf[IOException])
+class ClientTerminal extends Thread {
+  private val connectionToServer: Socket = new Socket("192.168.0.11", 5567)
+
   override def run() {
     var streamToServer: ObjectOutputStream = null
 
