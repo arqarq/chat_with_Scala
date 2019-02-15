@@ -4,7 +4,7 @@ import java.io.IOException
 import java.net.{ServerSocket, Socket}
 
 @throws(classOf[IOException])
-class ServerSocketDispatcher(portNumber: Integer) {
+class ServerSocketDispatcher(portNumber: Integer = 5567) {
   private val server: ServerSocket = new ServerSocket(portNumber)
   private val chatLog: ChatLog = new ChatLog
 

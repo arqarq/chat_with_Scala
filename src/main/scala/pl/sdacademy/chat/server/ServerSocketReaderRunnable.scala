@@ -8,19 +8,26 @@ import pl.sdacademy.chat.model.ChatMessage
 import scala.util.control.Breaks._
 
 class ServerSocketReaderRunnable(private val client: Socket,
-                                 private val chatLog: ChatLog
-                                ) extends Thread {
+                                 private val chatLog: ChatLog) extends Thread {
   override def run(): Unit = {
+    var clientInput = None: Option[ObjectInputStream]
+    //    var clientInput: ObjectInputStream = null
+
     if (!chatLog.register(client)) {
     }
-    try val clientInput = new ObjectInputStream(client.getInputStream) {
-      processClientInput(clientInput)
+    try {
+      clientInput = Some(new ObjectInputStream(client.getInputStream))
+      //      clientInput = new ObjectInputStream(client.getInputStream)
+      processClientInput(clientInput.get)
+      //      processClientInput(clientInput)
     } catch {
-      case
-        ex: IOException =>
+      case ex: IOException =>
         println("### Client disconnected due to network problem ###")
-        ex: ClassNotFoundException =>
-          println("### Client disconnected due to invalid message format ###")
+      case ex: ClassNotFoundException =>
+        println("### Client disconnected due to invalid message format ###")
+    } finally {
+      if (clientInput.isDefined) clientInput.get.close()
+      //      clientInput.close()
     }
     //    chatLog.unregister(client)
   }
@@ -35,7 +42,7 @@ class ServerSocketReaderRunnable(private val client: Socket,
           chatMessage.getMessage.equalsIgnoreCase("exit")) {
           break
         }
-//        chatLog.acceptMessage(chatMessage)
+        //        chatLog.acceptMessage(chatMessage)
       }
     }
   }
