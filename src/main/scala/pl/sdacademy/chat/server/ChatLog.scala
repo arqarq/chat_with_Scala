@@ -10,9 +10,11 @@ import pl.sdacademy.chat.model.{ChatMessage, DatedChatMessage}
 
 import scala.collection.JavaConverters._
 
-class ChatLog {
+class ChatLog(all: String) {
   private val registerClients = new ConcurrentHashMap[Socket, ObjectOutputStream]
   private val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+
+  def this() = this("")
 
   def register(client: Socket): Boolean = {
     try {

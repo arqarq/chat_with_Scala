@@ -6,9 +6,10 @@ object ServerMain {
   def main(args: Array[String]): Unit = {
     try {
       val serverSocketDispatcher = new ServerSocketDispatcher
-      //      serverSocketDispatcher.dispatch()
+      serverSocketDispatcher.dispatch()
     } catch {
-      case ex: IOException => ex.printStackTrace()
+      case ex: IOException =>
+        ex.printStackTrace()
     }
   }
 }
