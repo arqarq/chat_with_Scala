@@ -32,8 +32,7 @@ class ChatLog {
         val addressIP = client.getInetAddress.toString
         println("### " + addressIP.substring(1) + " disconnected ###")
         return true
-      }
-      catch {
+      } catch {
         case ex: IOException =>
       }
     }
