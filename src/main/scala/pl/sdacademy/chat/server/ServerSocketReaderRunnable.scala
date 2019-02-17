@@ -26,7 +26,9 @@ class ServerSocketReaderRunnable(private val client: Socket,
       case ex: ClassNotFoundException =>
         println("### Client disconnected due to invalid message format ###")
     } finally {
-      if (clientInput.isDefined) clientInput.get.close()
+      if (clientInput.isDefined) {
+        clientInput.get.close()
+      }
       //      clientInput.close()
     }
     //    chatLog.unregister(client)
@@ -42,7 +44,7 @@ class ServerSocketReaderRunnable(private val client: Socket,
           chatMessage.getMessage.equalsIgnoreCase("exit")) {
           break
         }
-        //        chatLog.acceptMessage(chatMessage)
+        chatLog.acceptMessage(chatMessage)
       }
     }
   }
