@@ -53,6 +53,7 @@ class ChatLog(all: String) {
 
   def unregister(client: Socket): Boolean = {
     val connectionToRemovedClient: ObjectOutputStream = registerClients.remove(client)
+
     if (connectionToRemovedClient != null) {
       try {
         connectionToRemovedClient.close()

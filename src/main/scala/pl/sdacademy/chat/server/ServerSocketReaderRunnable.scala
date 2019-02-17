@@ -29,9 +29,8 @@ class ServerSocketReaderRunnable(private val client: Socket,
       if (clientInput.isDefined) {
         clientInput.get.close()
       }
-      //      clientInput.close()
     }
-    //    chatLog.unregister(client)
+    chatLog.unregister(client)
   }
 
   @throws(classOf[IOException])
