@@ -23,4 +23,20 @@ class ChatLog {
         false
     }
   }
+
+  def unregister(client: Socket): Boolean = {
+    val connectionToRemovedClient: ObjectOutputStream = registerClients.remove(client)
+    if (connectionToRemovedClient != null) {
+      try {
+        connectionToRemovedClient.close()
+        val addressIP = client.getInetAddress.toString
+        println("### " + addressIP.substring(1) + " disconnected ###")
+        return true
+      }
+      catch {
+        case ex: IOException =>
+      }
+    }
+    false
+  }
 }
