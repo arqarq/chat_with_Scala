@@ -8,7 +8,8 @@ import pl.sdacademy.chat.model.ChatMessage
 import scala.util.control.Breaks._
 
 class ServerSocketReaderRunnable(private val client: Socket,
-                                 private val chatLog: ChatLog) extends Thread {
+                                 private val chatLog: ChatLog)
+  extends Thread {
   override def run(): Unit = {
     var clientInput = None: Option[ObjectInputStream]
     //    var clientInput: ObjectInputStream = null
