@@ -1,6 +1,7 @@
 package pl.sdacademy.chat.model
 
-class ChatMessage(private final val author: String, private final val message: String)
+class ChatMessage(private final val author: String,
+                  private final val message: String)
   extends Serializable {
   protected final val serialVersionUID: Long = 1
 
