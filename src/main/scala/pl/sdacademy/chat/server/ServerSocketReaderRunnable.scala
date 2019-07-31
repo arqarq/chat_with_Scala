@@ -11,15 +11,15 @@ class ServerSocketReaderRunnable(private val client: Socket,
                                  private val chatLog: ChatLog) extends Thread {
   override def run(): Unit = {
     var clientInput = None: Option[ObjectInputStream]
-    //    var clientInput: ObjectInputStream = null
+    //var clientInput: ObjectInputStream = null
 
     if (!chatLog.register(client)) {
     }
     try {
       clientInput = Some(new ObjectInputStream(client.getInputStream))
-      //      clientInput = new ObjectInputStream(client.getInputStream)
+      //clientInput = new ObjectInputStream(client.getInputStream)
       processClientInput(clientInput.get)
-      //      processClientInput(clientInput)
+      //processClientInput(clientInput)
     } catch {
       case ex: IOException =>
         println("### Client disconnected due to network problem ###")
